@@ -5,6 +5,7 @@ const POLITICA_CONTENIDO = [
   'font-src https://fonts.gstatic.com',
   "img-src 'self' data: blob: https: http:",
   "connect-src 'self'",
+  'frame-src https://www.google.com',
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

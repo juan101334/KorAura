@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const { pedir, el, tarjetaProducto, normalizar } = window.KorAura;
+  const { pedir, el, tarjetaProducto, normalizar, carrito } = window.KorAura;
   const $ = (id) => document.getElementById(id);
 
   const grid = $("catalogGrid");
@@ -143,6 +143,7 @@
 
     try {
       const datos = await pedir("/productos", { conToken: false });
+      if (Array.isArray(datos)) carrito.sincronizar(datos);
       catalogo = (Array.isArray(datos) ? datos : []).map((producto) => ({
         producto,
         texto: normalizar(`${producto.nombre} ${producto.descripcion || ""} ${producto.categoria || ""}`),

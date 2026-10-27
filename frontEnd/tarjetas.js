@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const { el, formatearPrecio, urlImagen, enlaceWhatsApp, normalizar } = window.KorAura;
+  const { el, formatearPrecio, urlImagen, normalizar, carrito } = window.KorAura;
 
   const SVG = "http://www.w3.org/2000/svg";
   const COLORES = ["sand", "sage", "bronze", "ink"];
@@ -57,8 +57,51 @@
       ...TRAZOS[tipoIcono(categoria)]
     );
 
-  const iconoWhatsApp = () =>
-    svg("0 0 24 24", { width: "18", height: "18", fill: "currentColor" }, ["use", { href: "#wa-path" }]);
+  const datos = new WeakMap();
+
+  const pintarAccion = (tarjeta) => {
+    const registro = datos.get(tarjeta);
+    const { producto, accion, id } = registro;
+    const cantidad = carrito.cantidadDe(id);
+    const agotado = !Number(producto.stock);
+
+    if (registro.cantidad === cantidad && registro.agotado === agotado && accion.firstChild) return;
+    registro.cantidad = cantidad;
+    registro.agotado = agotado;
+
+    const accionConFoco = accion.contains(document.activeElement)
+      ? document.activeElement.getAttribute("data-accion")
+      : null;
+    let nuevo;
+
+    if (agotado) {
+      nuevo = el("button", { class: "btn card__add", type: "button", disabled: true, text: "Agotado" });
+    } else if (cantidad === 0) {
+      nuevo = el(
+        "button",
+        {
+          class: "btn btn--ghost card__add",
+          type: "button",
+          "data-accion": "agregar",
+          "aria-label": `Añadir ${producto.nombre} al carrito`,
+          onclick: () => carrito.agregar(producto),
+        },
+        carrito.iconoBolsa(),
+        "Añadir al carrito"
+      );
+    } else {
+      nuevo = carrito.stepper(id);
+    }
+
+    accion.replaceChildren(nuevo);
+
+    if (accionConFoco !== null) {
+      const destino =
+        accion.querySelector(`[data-accion="${accionConFoco}"]:not(:disabled)`) ||
+        accion.querySelector('[data-accion="mas"]:not(:disabled), [data-accion="menos"], [data-accion="agregar"]');
+      destino?.focus();
+    }
+  };
 
   const tarjetaProducto = (producto, indice = 0) => {
     const media = el("div", { class: `card__media card__media--${COLORES[indice % COLORES.length]}` });
@@ -71,33 +114,34 @@
       media.append(icono(producto.categoria));
     }
 
-    const agotado = !producto.stock;
+    if (!Number(producto.stock)) media.append(el("span", { class: "card__badge", text: "Agotado" }));
 
-    return el(
+    const accion = el("div", { class: "card__accion" });
+
+    const tarjeta = el(
       "article",
       { class: "card" },
       media,
       el(
         "div",
         { class: "card__body" },
-        producto.categoria ? el("p", { class: "card__cat", text: producto.categoria }) : null,
         el("h3", { class: "card__name", text: producto.nombre }),
         producto.descripcion ? el("p", { class: "card__desc", text: producto.descripcion }) : null,
-        el(
-          "p",
-          { class: "card__price" },
-          formatearPrecio(producto.precio),
-          agotado ? el("span", { class: "card__badge", text: "Agotado" }) : null
-        ),
-        el(
-          "a",
-          { class: "btn btn--wa", href: enlaceWhatsApp(producto.nombre), target: "_blank", rel: "noopener" },
-          iconoWhatsApp(),
-          agotado ? "Preguntar cuándo llega" : "Consultar por WhatsApp"
-        )
+        el("p", { class: "card__price", text: formatearPrecio(producto.precio) }),
+        accion
       )
     );
+
+    datos.set(tarjeta, { producto, accion, id: carrito.idDe(producto), cantidad: -1, agotado: null });
+    pintarAccion(tarjeta);
+    return tarjeta;
   };
+
+  document.addEventListener("carrito:cambio", () => {
+    document.querySelectorAll(".card").forEach((tarjeta) => {
+      if (datos.has(tarjeta)) pintarAccion(tarjeta);
+    });
+  });
 
   window.KorAura.tarjetaProducto = tarjetaProducto;
 })();

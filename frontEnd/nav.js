@@ -38,29 +38,62 @@
     if (!e.matches) setMenu(false);
   });
 
-  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
+  const enlacesInternos = [...menu.querySelectorAll('a[href^="#"]')];
+  const secciones = enlacesInternos
+    .map((a) => ({ a, seccion: document.querySelector(a.getAttribute("href")) }))
+    .filter((par) => par.seccion);
 
-  if (document.body.dataset.pagina === "inicio" && "IntersectionObserver" in window) {
-    const links = [...menu.querySelectorAll('a[href^="#"]')];
-    const secciones = links.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+  const actualizar = () => {
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          links.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === `#${entry.target.id}`));
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    secciones.forEach((s) => observer.observe(s));
-  }
+    const alFinal = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    const linea = window.innerHeight * 0.4;
+    let activa = null;
+
+    secciones.forEach((par) => {
+      if (par.seccion.getBoundingClientRect().top <= linea) activa = par;
+    });
+    if (alFinal && secciones.length) activa = secciones[secciones.length - 1];
+
+    secciones.forEach((par) => par.a.classList.toggle("is-active", par === activa));
+  };
+
+  let pendiente = false;
+  const programar = () => {
+    if (pendiente) return;
+    pendiente = true;
+    requestAnimationFrame(() => {
+      pendiente = false;
+      actualizar();
+    });
+  };
+
+  actualizar();
+  window.addEventListener("scroll", programar, { passive: true });
+  window.addEventListener("resize", programar);
 
   document.querySelectorAll("[data-wa]").forEach((a) => {
     a.href = enlaceWhatsApp(a.dataset.producto);
   });
+
+  const ubicacion = window.KORAURA_CONFIG?.ubicacion;
+  const mapa = document.getElementById("mapa");
+  if (ubicacion && mapa) {
+    const consulta = encodeURIComponent(ubicacion.consulta);
+    const marco = document.createElement("iframe");
+    marco.src = `https://www.google.com/maps?q=${consulta}&z=16&output=embed`;
+    marco.title = `Mapa de ${ubicacion.nombre}`;
+    marco.loading = "lazy";
+    marco.referrerPolicy = "no-referrer-when-downgrade";
+    mapa.append(marco);
+
+    document.querySelectorAll('[data-ubicacion="direccion"]').forEach((n) => {
+      n.textContent = ubicacion.nombre;
+    });
+    document.querySelectorAll('[data-ubicacion="enlace"]').forEach((a) => {
+      a.href = `https://www.google.com/maps/search/?api=1&query=${consulta}`;
+    });
+  }
 
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();

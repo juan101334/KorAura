@@ -8,8 +8,8 @@ dotenv.config({ path: fileURLToPath(new URL('../../../.env', import.meta.url)), 
 const email = (process.env.ADMIN_EMAIL || 'admin@koraura.com').toLowerCase().trim();
 const password = process.env.ADMIN_PASSWORD;
 
-if (!password || password.length < 8) {
-  console.error('Falta ADMIN_PASSWORD (mínimo 8 caracteres).');
+if (!password || !/^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(password)) {
+  console.error('Falta ADMIN_PASSWORD (mínimo 8 caracteres, con letras y números).');
   process.exit(1);
 }
 

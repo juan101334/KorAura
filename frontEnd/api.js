@@ -78,6 +78,8 @@
     return `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(texto)}`;
   };
 
+  const enlaceWhatsAppTexto = (texto) => `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(texto)}`;
+
   const normalizar = (texto) =>
     String(texto || "")
       .toLowerCase()
@@ -110,6 +112,7 @@
     ErrorApi,
     formatearPrecio,
     enlaceWhatsApp,
+    enlaceWhatsAppTexto,
     normalizar,
     el,
   };

@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="catalogo.css">
   <link rel="stylesheet" href="chat.css">
+  <link rel="stylesheet" href="carrito.css">
 </head>
 <body data-pagina="catalogo">
   <a class="skip-link" href="#productos">Saltar al catálogo</a>
@@ -38,6 +39,13 @@
       </ul>
 
       <div class="nav__actions">
+        <button class="icon-btn cart-btn" id="cartBtn" type="button" aria-label="Abrir carrito" aria-haspopup="dialog" aria-controls="cartDialog">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 8h14l-1 12H6z"/>
+            <path d="M9 8V6.500a3 3 0 0 1 6 0V8"/>
+          </svg>
+          <span class="cart-btn__count" id="cartCount" hidden>0</span>
+        </button>
         <a class="icon-btn" href="login.html" aria-label="Acceso de administración" title="Acceso de administración">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="8" r="4"/>
@@ -100,38 +108,36 @@
           <p class="catalog__empty-text" id="catalogVacioTexto">Prueba con otra palabra o quita los filtros para ver todo el catálogo.</p>
           <button class="btn btn--ghost" id="catalogVacioLimpiar" type="button">Quitar filtros</button>
         </div>
-
-        <aside class="catalog__help" aria-label="Ayuda para elegir">
-          <div>
-            <h2 class="catalog__help-title">¿No encuentras lo que buscas?</h2>
-            <p class="catalog__help-text">Cuéntanos qué necesitas y te ayudamos a elegir.</p>
-          </div>
-          <a class="btn btn--light" href="#" data-wa target="_blank" rel="noopener">Escribir por WhatsApp</a>
-        </aside>
       </div>
     </section>
   </main>
 
-  <footer class="footer" id="contacto">
-    <div class="container footer__inner">
-      <div class="footer__brand">
-        <span class="footer__wordmark">KorAura</span>
-        <p>Accesorios en cuero.<br>Pedidos y consultas por WhatsApp.</p>
-      </div>
-
-      <div class="footer__social">
-        <h2 class="footer__heading">Escríbenos</h2>
-        <ul class="social">
-          <li>
-            <a href="#" data-wa target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="WhatsApp">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><use href="#wa-path"/></svg>
+  <div class="contacto" id="contacto">
+    <section class="section contacto__section" aria-labelledby="contactoTitulo">
+      <div class="container contacto__inner">
+        <div class="contacto__texto">
+          <h2 class="section__title" id="contactoTitulo">¿No encuentras lo que buscas?</h2>
+          <p class="section__lead">Cuéntanos qué necesitas por WhatsApp y te ayudamos a elegir. También puedes armar tu pedido en el carrito y enviarlo desde ahí.</p>
+          <p class="contacto__lugar"><span data-ubicacion="direccion"></span><a href="#" data-ubicacion="enlace" target="_blank" rel="noopener">Cómo llegar</a></p>
+          <div class="contacto__cta">
+            <a class="btn btn--primary" href="#" data-wa target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><use href="#wa-path"/></svg>
+              Escribir por WhatsApp
             </a>
-          </li>
-        </ul>
+            <a class="btn btn--ghost" href="#productos">Volver a los productos</a>
+          </div>
+        </div>
+        <div class="contacto__mapa" id="mapa"></div>
       </div>
-    </div>
-    <p class="footer__legal container">© <span id="year">2026</span> KorAura. Todos los derechos reservados.</p>
-  </footer>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span class="footer__wordmark">KorAura</span>
+        <p class="footer__legal">© <span id="year">2026</span> KorAura. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </div>
 
   <a class="wa-float" href="#" data-wa target="_blank" rel="noopener" aria-label="Escribir por WhatsApp" title="Escríbenos por WhatsApp">
     <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true"><use href="#wa-path"/></svg>
@@ -145,6 +151,7 @@
 
   <script src="config.js"></script>
   <script src="api.js"></script>
+  <script src="carrito.js"></script>
   <script src="tarjetas.js"></script>
   <script src="nav.js"></script>
   <script src="catalogo.js"></script>

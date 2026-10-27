@@ -1,0 +1,6 @@
+{
+  "printWidth": 120,
+  "overrides": [
+    { "files": "backEnd/**/*.js", "options": { "singleQuote": true } }
+  ]
+}
