@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KorAura | Accesorios en cuero</title>
+  <meta name="description" content="Bolsos, billeteras, correas y más en cuero. Diseño sobrio, hecho con cuidado para durar.">
+  <meta name="theme-color" content="#F3ECE1">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+  <a class="skip-link" href="#coleccion">Saltar al contenido</a>
+
+  <header class="site-header" id="header">
+    <nav class="nav container" aria-label="Principal">
+      <a class="brand" href="#inicio" aria-label="KorAura, ir al inicio">
+        <img class="brand__logo" src="assets/images/logoPequeño.png" alt="KorAura" width="215" height="175">
+      </a>
+
+      <ul class="nav__links" id="menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#coleccion">Colección</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <a class="icon-btn" href="login.html" aria-label="Acceso de administración" title="Acceso de administración">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
+          </svg>
+        </a>
+        <button class="icon-btn nav__toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+          <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <img class="hero__bg" src="assets/images/hero.jpeg" alt="Cinturón, billetera y zapatos de cuero sobre una mesa" fetchpriority="high">
+      <div class="hero__inner container">
+        <div class="hero__copy">
+          <p class="hero__kicker">Accesorios en cuero</p>
+          <h1 class="hero__title">Elegancia en cuero, hecha para durar</h1>
+          <p class="hero__text">Bolsos, billeteras y correas con acabado premium. Piezas pensadas para durar y acompañarte todos los días.</p>
+          <div class="hero__cta">
+            <a class="btn btn--light" href="#coleccion">Explorar colección</a>
+            <a class="btn btn--outline-light" href="#nosotros">Conocer KorAura</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="coleccion">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title">Colección</h2>
+          <p class="section__lead">Básicos en cuero para el día a día. Escríbenos y te contamos colores y disponibilidad.</p>
+        </header>
+
+        <div class="grid" id="productGrid">
+          <article class="card">
+            <div class="card__media card__media--sand">
+              <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M62 78c4-38 72-38 76 0"/>
+                <rect x="44" y="76" width="112" height="78" rx="14"/>
+                <path d="M44 100c20 14 92 14 112 0"/>
+                <circle cx="100" cy="112" r="5"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3 class="card__name">Bolso crossbody</h3>
+              <p class="card__desc">Compacto, con correa ajustable y cierre magnético.</p>
+              <p class="card__price">$129.000</p>
+              <a class="btn btn--wa" href="#" data-wa data-producto="Bolso Crossbody" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.5h-.01a9.9 9.9 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 6.99c0 5.45-4.44 9.88-9.9 9.88zM20.52 3.45A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.41z"/></svg>
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media card__media--sage">
+              <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="40" y="62" width="120" height="82" rx="10"/>
+                <path d="M40 84h120"/>
+                <rect x="118" y="96" width="42" height="26" rx="8"/>
+                <circle cx="132" cy="109" r="3"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3 class="card__name">Billetera slim</h3>
+              <p class="card__desc">Delgada, con espacio para tarjetas y billetes.</p>
+              <p class="card__price">$69.000</p>
+              <a class="btn btn--wa" href="#" data-wa data-producto="Billetera Slim" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><use href="#wa-path"/></svg>
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media card__media--bronze">
+              <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M30 88h140a10 10 0 0 1 10 10v4a10 10 0 0 1-10 10H30"/>
+                <path d="M30 88v24"/>
+                <rect x="100" y="80" width="30" height="40" rx="6"/>
+                <path d="M110 100h10"/>
+                <circle cx="62" cy="100" r="2"/><circle cx="82" cy="100" r="2"/>
+                <circle cx="150" cy="100" r="2"/><circle cx="168" cy="100" r="2"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3 class="card__name">Cinto Eko</h3>
+              <p class="card__desc">Hebilla metálica y acabado mate que resiste el uso diario.</p>
+              <p class="card__price">$59.000</p>
+              <a class="btn btn--wa" href="#" data-wa data-producto="Cinto Eko" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><use href="#wa-path"/></svg>
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__media card__media--ink">
+              <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M72 76c0-34 56-34 56 0"/>
+                <path d="M52 76h96l10 78a8 8 0 0 1-8 9H50a8 8 0 0 1-8-9z"/>
+                <path d="M72 76v14M128 76v14"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3 class="card__name">Tote bag</h3>
+              <p class="card__desc">Amplio y estructurado, para el trabajo o la universidad.</p>
+              <p class="card__price">$159.000</p>
+              <a class="btn btn--wa" href="#" data-wa data-producto="Tote Bag" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><use href="#wa-path"/></svg>
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="nosotros">
+      <div class="container">
+        <header class="section__head">
+          <h2 class="section__title">Hecho con cuidado, pensado para durar</h2>
+          <p class="section__lead">Accesorios en cuero con diseño sobrio y terminaciones cuidadas, para usar todos los días.</p>
+        </header>
+
+        <div class="values">
+          <article class="value">
+            <svg class="value__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 8h20l8 10-18 24L6 18z"/>
+              <path d="M6 18h36"/>
+              <path d="M18 18l6 24 6-24"/>
+            </svg>
+            <h3 class="value__title">Cuero de calidad</h3>
+            <p class="value__text">Materiales elegidos por su tacto, su cuerpo y su acabado, para que se vean bien desde el primer día.</p>
+          </article>
+
+          <article class="value">
+            <svg class="value__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M24 6 8 12v11c0 10 7 17 16 20 9-3 16-10 16-20V12z"/>
+              <path d="m17 24 5 5 9-10"/>
+            </svg>
+            <h3 class="value__title">Alta durabilidad</h3>
+            <p class="value__text">Costuras reforzadas y un cuero resistente al uso diario, que gana carácter con el tiempo.</p>
+          </article>
+
+          <article class="value">
+            <svg class="value__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M24 42S8 31 8 19a9 9 0 0 1 16-5.500A9 9 0 0 1 40 19c0 12-16 23-16 23z"/>
+            </svg>
+            <h3 class="value__title">Diseño local y artesanal</h3>
+            <p class="value__text">Cada pieza se piensa y se termina en casa, en series cortas y con atención al detalle.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contacto">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="brand__crop brand__crop--footer">
+          <img src="assets/images/logo.png" alt="KorAura" width="500" height="500">
+        </span>
+        <p>Accesorios en cuero.<br>Pedidos y consultas por WhatsApp.</p>
+      </div>
+
+      <div class="footer__social">
+        <h2 class="footer__heading">Síguenos</h2>
+        <ul class="social">
+          <li>
+            <a href="#" aria-label="KorAura en Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.500" cy="6.500" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="KorAura en Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.500 21v-8h2.700l.4-3.200h-3.100V7.800c0-.9.3-1.500 1.600-1.500h1.700V3.400c-.3 0-1.300-.1-2.400-.1-2.400 0-4.100 1.500-4.100 4.200v2.300H7.500V13h2.800v8z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="KorAura en TikTok" title="TikTok">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.600 3a5.200 5.200 0 0 0 4 4.600v3.200a8.300 8.300 0 0 1-4-1.200v6.100a5.900 5.900 0 1 1-5.100-5.800v3.300a2.700 2.700 0 1 0 1.900 2.500V3z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/573044853109" data-wa-plain target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="WhatsApp">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><use href="#wa-path"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer__legal container">© <span id="year">2026</span> KorAura. Todos los derechos reservados.</p>
+  </footer>
+
+  <a class="wa-float" id="waFloat"
+     href="https://wa.me/573044853109?text=Hola,%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20los%20productos%20KorAura"
+     target="_blank" rel="noopener" aria-label="Escribir por WhatsApp" title="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true"><use href="#wa-path"/></svg>
+  </a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <path id="wa-path" d="M17.470 14.380c-.3-.15-1.760-.87-2.030-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.170-.17.2-.35.22-.65.07-.3-.15-1.260-.46-2.400-1.480-.89-.79-1.490-1.770-1.660-2.070-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.620-.92-2.220-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.040 1.020-1.040 2.480s1.070 2.880 1.220 3.080c.15.2 2.100 3.200 5.080 4.490.71.31 1.260.49 1.690.63.71.23 1.360.2 1.870.12.57-.08 1.760-.72 2-1.410.25-.69.25-1.290.17-1.410-.07-.12-.27-.2-.57-.35zM12.050 21.500h-.01a9.900 9.900 0 0 1-5.030-1.380l-.36-.21-3.740.98 1-3.650-.24-.37a9.860 9.860 0 0 1-1.510-5.260c0-5.450 4.440-9.880 9.900-9.880 2.640 0 5.120 1.030 6.990 2.900a9.820 9.820 0 0 1 2.900 6.990c0 5.450-4.440 9.880-9.900 9.880zM20.520 3.450A11.800 11.800 0 0 0 12.050 0C5.500 0 .16 5.340.16 11.890c0 2.100.55 4.140 1.590 5.950L.06 24l6.300-1.650a11.880 11.880 0 0 0 5.680 1.450h.01c6.550 0 11.890-5.340 11.890-11.890 0-3.180-1.240-6.170-3.480-8.410z"/>
+    </defs>
+  </svg>
+
+  <script src="api.js"></script>
+  <script src="main.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>

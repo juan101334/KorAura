@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Crear administrador | KorAura</title>
+  <link rel="icon" type="image/png" href="assets/images/logoPequeño.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="auth-page">
+  <main class="auth">
+    <a class="auth__back" href="login.html">← Volver al acceso</a>
+
+    <section class="auth__card" aria-labelledby="registroTitle">
+      <img class="auth__logo" src="assets/images/logoPequeño.png" alt="KorAura" width="215" height="175">
+      <h1 class="auth__title" id="registroTitle">Crear administrador</h1>
+      <p class="auth__sub">Esta cuenta tendrá acceso completo al panel.</p>
+
+      <p class="auth__notice auth__notice--info" id="yaExiste" hidden>
+        Ya existe un administrador. Inicia sesión y registra nuevas cuentas desde el panel, en la pestaña “Administradores”.
+        <a class="btn btn--primary btn--block" href="login.html">Ir a iniciar sesión</a>
+      </p>
+
+      <form id="registroForm" novalidate hidden>
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Correo</label>
+          <input id="email" name="email" type="email" autocomplete="username" placeholder="admin@koraura.com" required>
+        </div>
+
+        <div class="field">
+          <label for="password">Contraseña <span class="field__hint">(mínimo 8, con letras y números)</span></label>
+          <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+        </div>
+
+        <div class="field">
+          <label for="password2">Repite la contraseña</label>
+          <input id="password2" name="password2" type="password" autocomplete="new-password" minlength="8" required>
+        </div>
+
+        <p class="form-error" id="registroError" role="alert" hidden></p>
+
+        <button class="btn btn--primary btn--block" id="registroBtn" type="submit">Crear cuenta</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="api.js"></script>
+  <script src="registro.js"></script>
+</body>
+</html>

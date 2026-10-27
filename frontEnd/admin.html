@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Panel de administración | KorAura</title>
+  <link rel="icon" type="image/png" href="assets/images/logoPequeño.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body is-loading">
+
+  <header class="admin-bar">
+    <div class="admin-bar__inner container">
+      <a class="admin-bar__brand" href="index.html" aria-label="Ir a la tienda">
+        <img src="assets/images/logoPequeño.png" alt="KorAura" width="215" height="175">
+        <span>Panel de administración</span>
+      </a>
+      <div class="admin-bar__right">
+        <a class="btn btn--ghost btn--sm" href="index.html">Ver tienda</a>
+        <button class="btn btn--primary btn--sm" id="logoutBtn" type="button">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin container">
+    <section class="admin-head">
+      <p class="welcome__kicker">Sesión iniciada</p>
+      <h1 class="welcome__title">Hola, <span id="userName"></span></h1>
+      <p class="admin-head__meta"><span id="userEmail"></span> · rol <strong id="userRole"></strong></p>
+    </section>
+
+    <div class="tabs" role="tablist" aria-label="Secciones del panel">
+      <button class="tabs__btn" id="tabProductos" role="tab" type="button" aria-selected="true" aria-controls="panelProductos">Productos</button>
+      <button class="tabs__btn" id="tabAdmins" role="tab" type="button" aria-selected="false" aria-controls="panelAdmins">Administradores</button>
+    </div>
+
+    <section class="panel" id="panelProductos" role="tabpanel" aria-labelledby="tabProductos">
+      <div class="stats">
+        <div class="stat"><span class="stat__num" id="statTotal">0</span><span class="stat__label">Productos</span></div>
+        <div class="stat"><span class="stat__num" id="statVisibles">0</span><span class="stat__label">Visibles en la tienda</span></div>
+        <div class="stat"><span class="stat__num" id="statSinStock">0</span><span class="stat__label">Sin stock</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar__filters">
+          <label class="sr-only" for="buscar">Buscar producto</label>
+          <input class="input" id="buscar" type="search" placeholder="Buscar por nombre…" autocomplete="off">
+          <label class="sr-only" for="filtroCategoria">Categoría</label>
+          <select class="input" id="filtroCategoria">
+            <option value="">Todas las categorías</option>
+          </select>
+        </div>
+        <button class="btn btn--primary" id="nuevoBtn" type="button">+ Nuevo producto</button>
+      </div>
+
+      <p class="form-error" id="productosError" role="alert" hidden></p>
+
+      <div class="table-wrap">
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Categoría</th>
+              <th scope="col" class="num">Precio</th>
+              <th scope="col" class="num">Stock</th>
+              <th scope="col">En tienda</th>
+              <th scope="col"><span class="sr-only">Acciones</span></th>
+            </tr>
+          </thead>
+          <tbody id="productosBody"></tbody>
+        </table>
+        <div class="empty" id="productosVacio" hidden>
+          <p class="empty__title" id="vacioTitulo">Aún no hay productos</p>
+          <p class="empty__text" id="vacioTexto">Crea el primero con el botón “Nuevo producto”.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panelAdmins" role="tabpanel" aria-labelledby="tabAdmins" hidden>
+      <div class="admins">
+        <div class="box">
+          <h2 class="box__title">Administradores</h2>
+          <p class="box__text">Una cuenta desactivada no puede iniciar sesión. Tu propia cuenta no se puede desactivar.</p>
+          <p class="form-error" id="adminsError" role="alert" hidden></p>
+          <ul class="admin-list" id="adminsLista"></ul>
+        </div>
+
+        <div class="box">
+          <h2 class="box__title">Registrar administrador</h2>
+          <form id="registroForm" novalidate>
+            <div class="field">
+              <label for="regNombre">Nombre</label>
+              <input id="regNombre" name="nombre" type="text" autocomplete="off" required>
+            </div>
+            <div class="field">
+              <label for="regEmail">Correo</label>
+              <input id="regEmail" name="email" type="email" autocomplete="off" required>
+            </div>
+            <div class="field">
+              <label for="regPassword">Contraseña <span class="field__hint">(mínimo 8, con letras y números)</span></label>
+              <input id="regPassword" name="password" type="password" autocomplete="new-password" minlength="8" required>
+            </div>
+            <div class="field">
+              <label for="regPassword2">Repite la contraseña</label>
+              <input id="regPassword2" name="password2" type="password" autocomplete="new-password" minlength="8" required>
+            </div>
+            <p class="form-error" id="registroError" role="alert" hidden></p>
+            <button class="btn btn--primary btn--block" id="registroBtn" type="submit">Registrar administrador</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="modal" id="productoDialog" aria-labelledby="productoTitulo">
+    <form class="modal__form" id="productoForm" method="dialog" novalidate>
+      <header class="modal__head">
+        <h2 id="productoTitulo">Nuevo producto</h2>
+        <button class="modal__close" type="button" data-cerrar aria-label="Cerrar">×</button>
+      </header>
+
+      <div class="modal__body">
+        <div class="field">
+          <label for="pNombre">Nombre *</label>
+          <input id="pNombre" name="nombre" type="text" maxlength="120" required>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="pCategoria">Categoría *</label>
+            <input id="pCategoria" name="categoria" type="text" list="categoriasSugeridas" required>
+            <datalist id="categoriasSugeridas">
+              <option value="Bolsos"></option>
+              <option value="Billeteras"></option>
+              <option value="Correas"></option>
+              <option value="Accesorios"></option>
+            </datalist>
+          </div>
+          <div class="field">
+            <label for="pPrecio">Precio (COP) *</label>
+            <input id="pPrecio" name="precio" type="number" min="0" step="100" inputmode="numeric" required>
+          </div>
+          <div class="field">
+            <label for="pStock">Stock</label>
+            <input id="pStock" name="stock" type="number" min="0" step="1" inputmode="numeric" value="0">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="pDescripcion">Descripción</label>
+          <textarea id="pDescripcion" name="descripcion" rows="3" maxlength="1000"></textarea>
+        </div>
+
+        <div class="field">
+          <span class="field__label">Foto</span>
+          <div class="foto" id="fotoZona">
+            <div class="foto__preview" id="imgPreview" aria-hidden="true"></div>
+            <div class="foto__acciones">
+              <label class="btn btn--ghost btn--sm foto__elegir" for="pFoto">Elegir foto</label>
+              <input class="sr-only" id="pFoto" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+              <button class="btn btn--danger-ghost btn--sm" id="quitarFoto" type="button">Quitar foto</button>
+              <p class="foto__ayuda" id="fotoAyuda">JPG, PNG o WEBP de hasta 5 MB. También puedes arrastrarla aquí.</p>
+            </div>
+          </div>
+          <details class="foto__enlace" id="fotoEnlace">
+            <summary>O usar un enlace de internet</summary>
+            <label class="sr-only" for="pImagen">Enlace de la imagen</label>
+            <input id="pImagen" name="imagen_url" type="text" inputmode="url" placeholder="https://…/foto.jpg">
+          </details>
+        </div>
+
+        <label class="switch">
+          <input id="pDisponible" name="disponible" type="checkbox" checked>
+          <span class="switch__track" aria-hidden="true"></span>
+          <span>Mostrar en la tienda</span>
+        </label>
+
+        <p class="form-error" id="productoError" role="alert" hidden></p>
+      </div>
+
+      <footer class="modal__foot">
+        <button class="btn btn--ghost" type="button" data-cerrar>Cancelar</button>
+        <button class="btn btn--primary" id="guardarBtn" type="submit">Guardar</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog class="modal modal--sm" id="confirmDialog" aria-labelledby="confirmTitulo">
+    <div class="modal__body">
+      <h2 class="modal__title" id="confirmTitulo">¿Eliminar producto?</h2>
+      <p class="modal__text" id="confirmTexto"></p>
+    </div>
+    <footer class="modal__foot">
+      <button class="btn btn--ghost" type="button" id="confirmNo">Cancelar</button>
+      <button class="btn btn--danger" type="button" id="confirmSi">Eliminar</button>
+    </footer>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="config.js"></script>
+  <script src="api.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
